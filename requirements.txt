@@ -1,5 +1,5 @@
 asgiref==3.7.2
-Django==5.0.2
+Django
 django-etc==1.4.0
 django-hitcount==1.3.5
 django-modeltranslation==0.18.11
