@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load hitcount_tags %}
+
+{% block title %}Detail page{% endblock title %}
+
+{% block extra_head %}
+<link href="{% static 'css/detail.css' %}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"  crossorigin="anonymous" />
+
+{% endblock extra_head %}
+
+{% block content %}
+
+{% if messages %}
+
+{% for message in messages %}
+<div class="alert alert-danger" role="alert">
+  {{ message }}
+</div>
+{% endfor %}
+
+{% endif %}
+
+<div id="fh5co-single-content" class="container-fluid pb-4 pt-4 padding">
+    <div class="container padding">
+        <div class="row mx-0">
+
+            <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft">
+                <img src="{{ new.image.url }}" alt="News Image" class="news-image">
+                <h2 class="news-title">{{ new.title }}</h2>
+                <p class="news-caption">{{ new.caption }}</p>
+                <div class="news-info">
+                    <p class="publish-time">Published on: {{ new.publish_time }}</p>
+                    <div class="info-item">
+                        <i class="fas fa-eye"></i> Views: {% get_hit_count for new %}
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-comments"></i> Comments: {{ new.comments.count }}
+                    </div>
+                    <div class="like-button">
+                        {% if user.is_authenticated %}
+                            {% if liked %}
+                                <a href="{% url 'like' new.slug %}" id="like-btn" class="liked"><i class="fas fa-thumbs-up"></i> Like</a>
+                            {% else %}
+                                <a href="{% url 'like' new.slug %}" id="like-btn"><i class="fas fa-thumbs-up"></i> Like</a>
+                            {% endif %}
+                        {% else %}
+                            <button id="like-btn"><i class="fas fa-thumbs-up"></i> Like</button>
+                        {% endif %}
+                        <span id="like-count">{{ new.likes.count }}</span>
+                    </div>
+
+                </div>
+                <div class="news-body">
+                    {{ new.body }}
+                </div>
+                <div class="comment-section">
+                    <h3>Comments</h3>
+                    <!-- Comment Form -->
+                    <form action="" method="post" class="comment-form">
+                        {% csrf_token %}
+                        <textarea class="comment-textarea" placeholder="Write your comment here" name="comment"></textarea>
+                        <input type="submit" class="btn btn-primary" value="Post Comment">
+                    </form>
+                    <!-- End Comment Form -->
+                </div>
+                <!-- Display Comments -->
+                <div class="comments">
+                    <!-- Sample Comment -->
+                    {% for comment in new.comments.all %}
+                    <div class="comment">
+                        <div class="comment-user">{{ comment.author }}</div>
+                        <div class="comment-body">{{ comment.comment }}</div>
+                    </div>
+                    {% endfor %}
+                    <!-- End Sample Comment -->
+                    <!-- Add more comments dynamically here -->
+                </div>
+                <!-- End Display Comments -->
+
+            </div>
+
+            <div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
+                <div>
+                    <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Categories</div>
+                </div>
+                <div class="clearfix"></div>
+                {% for category in categories %}
+                <div class="fh5co_tags_all">
+                    <a href="{{ category.get_absolute_url }}" class="fh5co_tagg">{{ category.name }}</a>
+                </div>
+                {% endfor %}
+                <div>
+                    <div class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4">Most Popular</div>
+                </div>
+
+                {% for new in popular_news %}
+                <div class="row pb-3">
+                    <div class="col-5 align-self-center">
+                        {% if new.image %}
+                        <img src="{{ new.image.url }}" alt="img" class="fh5co_most_trading"/>
+                        {% endif %}
+                    </div>
+                    <div class="col-7 padding">
+                        <div class="most_fh5co_treding_font">{{ new.title }}.</div>
+                        <div class="most_fh5co_treding_font_123"> {{ new.publish_time }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid pb-4 pt-5">
+    <div class="container animate-box">
+        <div>
+            <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Trending</div>
+        </div>
+        <div class="owl-carousel owl-theme" id="slider2">
+            {% for trend_new in trending_news %}
+            <div class="item px-2">
+                <div class="fh5co_hover_news_img">
+                    {% if trend_new.image %}
+                    <div class="fh5co_news_img"><img src="{{ trend_new.image.url }}" alt=""/></div>
+                    {% endif %}
+                    <div>
+                        <a href="{{ trend_new.get_absolute_url }}" class="d-block fh5co_small_post_heading"><span class="">{{ trend_new.title }}</span></a>
+                        <div class="c_g"><i class="fa fa-clock-o"></i>{{ trend_new.publish_time }}</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block script %}
+<script>if (!navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i)){$(window).stellar();}</script>
+{% endblock script %}

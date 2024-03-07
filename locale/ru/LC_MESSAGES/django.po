@@ -1,0 +1,81 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-07 17:59+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: config/settings.py:129
+msgid "Uzbek"
+msgstr "Узбекский"
+
+#: config/settings.py:130
+msgid "English"
+msgstr "Английский"
+
+#: config/settings.py:131
+msgid "Russian"
+msgstr "Русский"
+
+#: templates/base.html:10
+msgid "Bosh sahifa"
+msgstr "Домашняя страница"
+
+#: templates/base.html:100
+msgid "Home"
+msgstr "Дом"
+
+#: templates/base.html:108
+msgid "Contact"
+msgstr "Контакт"
+
+#: templates/base.html:115
+msgid "Action in"
+msgstr "Действия в"
+
+#: templates/base.html:116
+msgid "Another action"
+msgstr "Другое действие"
+
+#: templates/base.html:117
+msgid "Logout"
+msgstr "Выйти"
+
+#: templates/base.html:122
+msgid "Login"
+msgstr "Авторизоваться"
+
+#: templates/base.html:145
+msgid "About"
+msgstr "О"
+
+#: templates/base.html:147
+msgid "Salom"
+msgstr "Привет"
+
+#: templates/base.html:165
+msgid "Categories"
+msgstr "Категории"
+
+#: templates/base.html:173
+msgid "Most Viewed Posts"
+msgstr "Самые просматриваемые сообщения"
+
+#: templates/base.html:181
+msgid "Last Modified Posts"
+msgstr "Последние измененные сообщения"
